@@ -44,16 +44,26 @@ namespace CRC32_calculate
         private void Form1_Load(object sender, EventArgs e)
         {
             setup_combos();
+            bar_init();
         }
 
         //================================================================================================================================
         //================================================================================================================================
         //================================================================================================================================
-        private void button1_Click(object sender, EventArgs e)
-        { 
+
+        private void Open_BTN_Click(object sender, EventArgs e)
+        {
+            DateTime x1, x2;
+            TimeSpan x3;
+            if(Open_BTN.Enabled == false) // if button is disabled, just return
+            {
+                return;
+            }
+
             label1.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
+            label4.Visible = false;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -69,8 +79,17 @@ namespace CRC32_calculate
                 label2.Visible = true;
                 long readlength = my_file_length;
                 setup_combos();
+                bar_init();
+                progressBar1.Maximum = (int)(my_file_length / 1024);
+                 
+                progressBar1.Visible = true;
+                progressBar1.BringToFront();
+                progressBar1.BackColor = Color.Black;
+                progressBar1.ForeColor = Color.Red;
+                disable_controls();
                 long bytes_read = 0;
                 System.IO.FileStream fsr = new System.IO.FileStream((openFileDialog1.FileName), System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                x1 = DateTime.Now;
                 while (readlength > 0)
                 {
                     
@@ -100,14 +119,22 @@ namespace CRC32_calculate
                             }
                         }
                     }
-                    
+                    progressBar1.PerformStep();
+                    Application.DoEvents();
+
                     //--- CRC32 calculate ---
                 }
+                x2 = DateTime.Now;
                 fsr.Close();
                 fsr.Dispose();
                 my_CRC32 = my_CRC32 ^ crc_xor;
                 label3.Text = "CRC32: 0x" + my_CRC32.ToString("X8");
                 label3.Visible = true;
+                x3 = x2 - x1;
+                label4.Text = "Time taken: " + x3.TotalSeconds.ToString("F3") + " seconds";
+                label4.Visible = true;
+                enable_controls();
+                bar_init();
             }
         }
         //================================================================================================================================
@@ -265,8 +292,44 @@ namespace CRC32_calculate
             }
             comboBox3.Text = str;
         }
+        private void disable_controls()
+        {
+            Open_BTN.Enabled = false;
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+            comboBox4.Enabled = false;
+            checkBox1.Enabled = false;
+            checkBox2.Enabled = false;
+            checkBox3.Enabled = false;
+            menuStrip1.Enabled = false;
+            contextMenuStrip1.Enabled = false;
+        }
 
-
+        private void enable_controls()
+        {
+            Open_BTN.Enabled = true;
+            comboBox1.Enabled = checkBox1.Checked;
+            comboBox2.Enabled = checkBox2.Checked;
+            comboBox4.Enabled = checkBox3.Checked;
+            checkBox1.Enabled = true;
+            checkBox2.Enabled = true;
+            checkBox3.Enabled = true;
+            menuStrip1.Enabled = true;
+            contextMenuStrip1.Enabled = true;
+        }
+        private void bar_init()
+        {
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 100;
+            progressBar1.Value = 0;
+            progressBar1.Step = 1;
+            progressBar1.Visible = false;
+             
+            progressBar1.Size = new Size(statusStrip1.Width -20, statusStrip1.Height - 6);
+            progressBar1.Location = new Point(statusStrip1.Location.X +5, statusStrip1.Location.Y +3);
+            
+        
+        }
 
         private void setup_combos()
         {

@@ -40,7 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +51,9 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.label4 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -66,7 +68,7 @@
             this.Open_BTN.TabIndex = 0;
             this.Open_BTN.Text = "OPEN FILE";
             this.Open_BTN.UseVisualStyleBackColor = true;
-            this.Open_BTN.Click += new System.EventHandler(this.button1_Click);
+            this.Open_BTN.Click += new System.EventHandler(this.Open_BTN_Click);
             // 
             // openFileDialog1
             // 
@@ -98,7 +100,7 @@
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.button1_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.Open_BTN_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -153,14 +155,6 @@
             this.label1.Text = "label1";
             this.label1.Visible = false;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -175,7 +169,7 @@
             this.openToolStripMenuItem1.ShortcutKeyDisplayString = "Ctrl+O";
             this.openToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem1.Text = "Open";
-            this.openToolStripMenuItem1.Click += new System.EventHandler(this.button1_Click);
+            this.openToolStripMenuItem1.Click += new System.EventHandler(this.Open_BTN_Click);
             // 
             // exitToolStripMenuItem1
             // 
@@ -277,12 +271,42 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog1";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(255, 375);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 26);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "label4";
+            this.label4.Visible = false;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBar1.Location = new System.Drawing.Point(64, 378);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
+            this.progressBar1.TabIndex = 14;
+            this.progressBar1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
@@ -321,7 +345,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
@@ -333,6 +356,9 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
