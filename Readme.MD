@@ -1,2 +1,2 @@
 
-![Screenshot](1.jpg)
+![Screenshot](/PICTURES/1.jpg)
