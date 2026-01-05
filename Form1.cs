@@ -389,7 +389,13 @@ namespace CRC32_calculate
             }
         }
 
-     
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            progressBar1.Size = new Size(statusStrip1.Width - 20, statusStrip1.Height - 6);
+            progressBar1.Location = new Point(statusStrip1.Location.X + 5, statusStrip1.Location.Y + 3);
+        }
+
+
         //================================================================================================================================
     }
 
